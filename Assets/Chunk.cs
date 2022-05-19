@@ -25,7 +25,7 @@ public class Chunk : MonoBehaviour
     int textureWidth = 512;
     int textureHeight = 512;
 
-    private int RandomX, RandomY;
+    private int RandomX, RandomZ;
 
     private void Awake()
     {
@@ -43,13 +43,13 @@ public class Chunk : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    public void Generate(int cx, int cz, int x, int y)
+    public void Generate(int cx, int cz, int x, int z)
     {
 
         Chunkx = cx;
         Chunkz = cz;
         RandomX = x;
-        RandomY = y;
+        RandomZ = z;
 
         //  GenerateBlocks();
         GenerateHeightmaps();
@@ -142,12 +142,12 @@ public class Chunk : MonoBehaviour
     {
 
         int height = 0;
-        float xCoorda = (float)((x + (chunkX * 16)) / 16f) * scale;
-        float xCoordb = (float)((x + (chunkX * 16) + 1000) / 16f) * (scale * 2);
-        float xCoordc = (float)((x + (chunkX * 16) + 2000) / 16f) * (scale * 4);
-        float zCoorda = (float)((z + (chunkZ * 16)) / 16f) * scale;
-        float zCoordb = (float)((z + (chunkZ * 16) + 1000) / 16f) * (scale * 2);
-        float zCoordc = (float)((z + (chunkZ * 16) + 2000) / 16f) * (scale * 4);
+        float xCoorda = (float)RandomX +(float)((x + (chunkX * 16)) / 16f) * scale;
+        float xCoordb = (float)RandomX + (float)((x + (chunkX * 16) + 1000) / 16f) * (scale * 2);
+        float xCoordc = (float)RandomX + (float)((x + (chunkX * 16) + 2000) / 16f) * (scale * 4);
+        float zCoorda = (float)RandomZ + (float)((z + (chunkZ * 16)) / 16f) * scale;
+        float zCoordb = (float)RandomZ + (float)((z + (chunkZ * 16) + 1000) / 16f) * (scale * 2);
+        float zCoordc = (float)RandomZ + (float)((z + (chunkZ * 16) + 2000) / 16f) * (scale * 4);
 
         //  Debug.Log("x = " + x + ",Chunk = " + chunkX + ",Location = " + (x + (chunkX * 16)));
         // Debug.Log(xCoord);
