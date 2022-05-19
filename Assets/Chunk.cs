@@ -25,6 +25,8 @@ public class Chunk : MonoBehaviour
     int textureWidth = 512;
     int textureHeight = 512;
 
+    private int RandomX, RandomY;
+
     private void Awake()
     {
         mRenderer = GetComponent<MeshRenderer>();
@@ -41,11 +43,14 @@ public class Chunk : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    public void Generate(int cx, int cz)
+    public void Generate(int cx, int cz, int x, int y)
     {
 
         Chunkx = cx;
         Chunkz = cz;
+        RandomX = x;
+        RandomY = y;
+
         //  GenerateBlocks();
         GenerateHeightmaps();
 
@@ -147,8 +152,8 @@ public class Chunk : MonoBehaviour
         //  Debug.Log("x = " + x + ",Chunk = " + chunkX + ",Location = " + (x + (chunkX * 16)));
         // Debug.Log(xCoord);
         float heighta = 1 + (Mathf.PerlinNoise(xCoorda, zCoorda) * 50f);
-        float heightb = 1 + (Mathf.PerlinNoise(xCoorda, zCoorda) * 25f);
-        float heightc = 1 + (Mathf.PerlinNoise(xCoorda, zCoorda) * 12f);
+        float heightb = 1 + (Mathf.PerlinNoise(xCoordb, zCoordb) * 25f);
+        float heightc = 1 + (Mathf.PerlinNoise(xCoordc, zCoordc) * 12f);
         float contientalness = (heighta + heightb + heightc) / (50f + 25f + 12f);
 
 

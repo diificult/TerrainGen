@@ -11,8 +11,17 @@ public class ChunkSpawner : MonoBehaviour
 
     public Dictionary<Point, Chunk> chunks = new Dictionary<Point, Chunk>();
 
+    private int RandomX, RandomZ;
+
+
     public void Start()
     {
+
+        RandomX = Random.Range(0, 20000);
+        RandomZ = Random.Range(0, 20000);
+        
+
+
         for (int cx = 0; cx < 48; cx++)
         {
             for (int cz = 0; cz < 48; cz++)
@@ -29,7 +38,7 @@ public class ChunkSpawner : MonoBehaviour
         yield return new WaitForEndOfFrame();
         
         Chunk c = Instantiate(chunk, new Vector3(cx * 16, 0, cz * 16), new Quaternion(0,0,0,0)).GetComponent<Chunk>();
-        c.Generate(cx, cz);
+        c.Generate(cx, cz, RandomX , RandomZ);
 
         chunks.Add(new Point(cx, cz), c);
         
